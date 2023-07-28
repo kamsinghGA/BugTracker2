@@ -13,6 +13,10 @@ export default function SignUpForm() {
     }
 
     function handleChange(evt) {
+        setUserForm({
+            [evt.target.name]:evt.target.value,
+            error:''
+        });
 
     }
 
