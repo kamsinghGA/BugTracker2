@@ -7,8 +7,18 @@ export default function App() {
   const [user, setUser] = useState(null);
   return (
     <main className="App">
-      <NavBar />
-      <AuthPage />
+      { user ?
+        <>
+          <NavBar />
+          <Routes>
+            {/* Route components in here */}
+            <Route path='/bugs/new' element={<NewBugPahe />}/>
+            <Route path='/bugs' element={<BugHistoryPage />}/>
+          </Routes>
+        </>
+        :
+        <AuthPage />
+      }
     </main>
   );
 }
