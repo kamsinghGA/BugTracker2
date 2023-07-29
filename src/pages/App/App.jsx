@@ -12,7 +12,7 @@ export default function App() {
           <NavBar />
           <Routes>
             {/* Route components in here */}
-            <Route path='/bugs/new' element={<NewBugPahe />}/>
+            <Route path='/bugs/new' element={<NewBugPage />}/>
             <Route path='/bugs' element={<BugHistoryPage />}/>
           </Routes>
         </>
