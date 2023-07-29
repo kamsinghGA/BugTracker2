@@ -10,6 +10,12 @@ export default function SignUpForm() {
     })
     async function handleSubmit(evt) {
         evt.preventDefault();
+        try {
+            const {name, email, password} = userForm;
+            const formData = {name, email, password};
+        } catch {
+            setUserForm({error: 'Sign Up Failed - Try Again!'});
+        }
     }
 
     function handleChange(evt) {
