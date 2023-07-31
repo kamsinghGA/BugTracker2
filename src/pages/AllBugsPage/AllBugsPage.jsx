@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function AllBugsPage() {
     const [bugs, setBugs] = useState('')
@@ -17,18 +17,23 @@ export default function AllBugsPage() {
         fetchBugs()
       }, [])
 
+      const navigate = useNavigate();
+
+      function handleButtonClick(bug){
+        navigate(`/edit/${bug._id}`);
+      }
+
       return(
         <>
             { bugs ?
                 bugs.map((bug) => (
-                    <>
-                        <Link key={bug._id} to={`/${bug._id}`}>
+                    <div key={bug._id}>
+                        <Link to={`/${bug._id}`}>
                             <li>{bug.text}</li>
                         </Link>
-                        <button>Edit</button>
+                        <button onClick={() => {handleButtonClick(bug)}}>Edit</button>
                         <button>Delete</button>
-                    </>
-                    
+                    </div>
                 ))
                 :
                 <h3>No Bugs Yet!</h3>
