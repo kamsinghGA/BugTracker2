@@ -21,9 +21,13 @@ export default function AllBugsPage() {
         <>
             { bugs ?
                 bugs.map((bug) => (
-                    <Link key={bug._id} to={`/${bug._id}`}>
-                        <li>{bug.text}</li>
-                    </Link>
+                    <>
+                        <Link key={bug._id} to={`/${bug._id}`}>
+                            <li>{bug.text}</li>
+                        </Link>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </>
                     
                 ))
                 :

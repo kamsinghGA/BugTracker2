@@ -46,6 +46,7 @@ export default function AddBugForm() {
         <input 
           type="text" 
           name='name' 
+          value={text.name}
           placeholder='Name of Bug'
           onChange={handleChange}
         />
