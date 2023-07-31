@@ -45,8 +45,7 @@ export default function SignUpForm() {
           }));
         }
     }
-
-
+    
     function handleChange(evt) {
         setUserForm({
             ...userForm,
