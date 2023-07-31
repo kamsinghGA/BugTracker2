@@ -25,7 +25,7 @@ const createBug = async (req, res) => {
   const {text} = req.body
   // add doc to db
   try {
-    const bug = await Bug.create({ text })
+    const bug = await Bug.create(text)
     res.status(200).json(bug)  
   } catch (error) {
     res.status(400).json({error: error.message})

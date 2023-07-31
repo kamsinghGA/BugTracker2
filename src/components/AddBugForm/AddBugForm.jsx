@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function AddBugForm() {
   const [text, setText] = useState({
     name:'',
-    description:'',
-    status:''
+    text:'',
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -36,6 +35,7 @@ export default function AddBugForm() {
 
   function handleChange(evt) {
     setText({
+      ...text,
       [evt.target.name]:evt.target.value
     });
   }
@@ -52,8 +52,8 @@ export default function AddBugForm() {
         />
         <textarea
           type="text"
-          name="bugs"
-          value={text.description}
+          name="text"
+          value={text.text}
           onChange={handleChange}
           placeholder='Add Description'
           required
