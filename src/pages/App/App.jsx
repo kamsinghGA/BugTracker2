@@ -1,34 +1,26 @@
-import logo from './logo.svg';
-import React from "react";
-import { Routes, Route, Redirect } from "react-router-dom";
-import Header from "./components/Header";
-import CodeErrorList from "./components/CodeErrorList";
-import ErrorHistory from "./components/ErrorHistory";
-import SearchBar from "./components/SearchBar";
-import ErrorDetails from "./components/ErrorDetails";
-import Login from "./components/Login";
-import "./App.css";
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import BugsPage from '../BugsPage/BugsPage';
+import NavBar from '../../components/NavBar/NavBar';
+import AllBugsPage from '../AllBugsPage/AllBugsPage';
+import HomePage from '../HomePage/HomePage'
+import DetailsPage from '../DetailsPage/DetailsPage';
+import EditPage from '../EditPage/EditPage';
 
-const App = () => {
-  const isAuthenticated = true; // Replace with actual authentication status
+import './App.css';
 
+export default function App() {
   return (
-    <div className="app">
-      <Header />
-      {isAuthenticated ? (
-        <Routes>
-          <Route path="/" element={<CodeErrorList />} />
-          <Route path="/history" element={<ErrorHistory />} />
-          <Route path="/search" element={<SearchBar />} />
-          <Route path="/error/:id" element={<ErrorDetails />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      )}
-    </div>
+  <>
+    <NavBar />
+    <Routes>
+        <Route path='/addBugs' element={<BugsPage />} />
+        <Route path='/allBugs' element={<AllBugsPage />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/:id' element={<DetailsPage />} />
+        <Route path='/edit/:id' element={<EditPage />} />
+    </Routes>
+  </>
   );
 };
 
-export default App;
