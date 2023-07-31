@@ -6,8 +6,9 @@ export async function signUp(userData) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
     });
-    if(res.ok) {
-        return res.json(); // this object has the user property
+    if (res.ok) {
+        const data = await res.json();
+        return data.user; // this object has the user property
     } else {
         throw new Error('Invalid Sign Up');
     }
