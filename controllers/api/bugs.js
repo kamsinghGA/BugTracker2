@@ -46,9 +46,9 @@ const deleteBug = async (req, res) => {
 
 //update bug
 const updateBug = async (req, res) => {
-  const bug = await Bug.findOneAndUpdate({_id: id}, {
-    ...req.body
-  })
+  const bug = await Bug.findOneAndUpdate({_id: req.params.id}, 
+    req.body
+  )
 
   if (!bug) {
     return res.status(404).json({error: 'No bug'})

@@ -21,7 +21,7 @@ router.post('/', createBug);
 router.delete('/:id', deleteBug);
 
 // update bug
-router.patch('/:id', updateBug);
+router.put('/:id', updateBug);
 
 
 module.exports = router
