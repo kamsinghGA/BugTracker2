@@ -31,14 +31,15 @@ export default function EditPage() {
         setText(event.target.value);
     };
 
-    async function handleSaveChanges() {
+    async function handleSaveChanges(event) {
+      event.preventDefault()
         try {
             const response = await fetch(`/api/bugs/${id}`, {
               method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ name, text }),
+              body: JSON.stringify({ name:name, text:text }),
             });
       
             if (response.ok) {
