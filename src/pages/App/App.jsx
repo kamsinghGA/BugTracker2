@@ -1,10 +1,17 @@
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import BugsPage from '../BugsPage/BugsPage';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 export default function App() {
   return (
-    <main className="App">
-      <h1>Hello</h1>
-    </main>
+  <>
+    <Link to="/bugs">Bugs</Link>
+    <Routes>
+        <Route path='/bugs' element={<BugsPage />} />
+    </Routes>
+  </>
   );
 }
 
