@@ -16,7 +16,7 @@ export default function AddBugForm() {
 
     const response = await fetch('/api/bugs', {
       method: 'POST',
-      body: JSON.stringify(text),
+      body: JSON.stringify(bug),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -35,6 +35,7 @@ export default function AddBugForm() {
 
   function handleChange(evt) {
     setText({
+      ...text,
       [evt.target.name]:evt.target.value
     });
   }
