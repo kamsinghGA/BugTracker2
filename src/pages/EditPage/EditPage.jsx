@@ -5,20 +5,22 @@ import { useState } from 'react';
 export default function EditPage() {
     const {id} = useParams();
     const [bug, setBug] = useState(null);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
 
     const fetchBugs = async () => {
         const response = await fetch(`/api/bugs/${id}`)
         const json = await response.json()
 
         if(response.ok) {
-          setBug(json)
+          setBug(json);
+          setName(json.name);
+          setDescription(json.description);
         }
     }
     useEffect(() => {
         fetchBugs();
     }, [id]);
-
-
 
     async function handleSaveChanges() {
         try {
