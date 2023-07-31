@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 export default function AllBugsPage() {
-    const [bugs, setBugs] = useState('')
+    const [bugs, setBugs] = useState('');
     useEffect(() => {
         const fetchBugs = async () => {
           const response = await fetch('/api/bugs')
@@ -29,7 +29,7 @@ export default function AllBugsPage() {
                 bugs.map((bug) => (
                     <div key={bug._id}>
                         <Link to={`/${bug._id}`}>
-                            <li>{bug.text}</li>
+                            <li>{bug.name}</li>
                         </Link>
                         <button onClick={() => {handleButtonClick(bug)}}>Edit</button>
                         <button>Delete</button>

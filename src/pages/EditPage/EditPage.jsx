@@ -6,21 +6,30 @@ export default function EditPage() {
     const {id} = useParams();
     const [bug, setBug] = useState(null);
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [text, setText] = useState('');
 
     const fetchBugs = async () => {
         const response = await fetch(`/api/bugs/${id}`)
         const json = await response.json()
 
         if(response.ok) {
+          console.log(json);
           setBug(json);
           setName(json.name);
-          setDescription(json.description);
+          setText(json.text);
         }
     }
     useEffect(() => {
         fetchBugs();
     }, [id]);
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
+    
+    const handleDescriptionChange = (event) => {
+        setText(event.target.value);
+    };
 
     async function handleSaveChanges() {
         try {
@@ -29,7 +38,7 @@ export default function EditPage() {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ name, description }),
+              body: JSON.stringify({ name, text }),
             });
       
             if (response.ok) {
@@ -45,7 +54,20 @@ export default function EditPage() {
     return(
         <>
             <h1>Edit Bug Page</h1>
-        
+            {bug ? (
+                <form onSubmit={handleSaveChanges}>
+                    <div>
+                        <input type="text" value={name} onChange={handleNameChange} placeholder='Bug Name'/>
+                        <br />
+                        <input type="textarea" value={text} onChange={handleDescriptionChange} placeholder='Description'/>
+                        <br />
+                        <button type='submit'>Save Changes</button>
+                    </div>
+                </form>
+            ) : (
+                <p>No bug description available</p>
+            )
+            }
         </>
     )
 }

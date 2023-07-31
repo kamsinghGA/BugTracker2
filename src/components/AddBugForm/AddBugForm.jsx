@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function AddBugForm() {
   const [text, setText] = useState({
     name:'',
-    description:'',
-    status:''
+    text:'',
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ export default function AddBugForm() {
 
     const response = await fetch('/api/bugs', {
       method: 'POST',
-      body: JSON.stringify(bug),
+      body: JSON.stringify(text),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -52,8 +51,8 @@ export default function AddBugForm() {
         />
         <textarea
           type="text"
-          name="bugs"
-          value={text.description}
+          name="text"
+          value={text.text}
           onChange={handleChange}
           placeholder='Add Description'
           required
