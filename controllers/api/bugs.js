@@ -12,13 +12,11 @@ const getBugs = async (req, res) => {
 //get single bug
 const getBug = async (req, res) => {
   const { id } = req.params
-
   const bug = await Bug.findById(id)
 
   if (!bug) {
     return res.status(404).json({error: 'No bug'})
   }
-
   res.status(200).json(bug)
 }
 
@@ -37,7 +35,6 @@ const createBug = async (req, res) => {
 //delete bug
 const deleteBug = async (req, res) => {
   const { id } = req. params
-  
   const bug = await Bug.findOneAndDelete({_id: id})
 
   if (!bug) {
