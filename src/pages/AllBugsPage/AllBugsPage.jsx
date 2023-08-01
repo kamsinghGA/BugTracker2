@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 export default function AllBugsPage() {
-    const [bugs, setBugs] = useState('');
+    const [bugs, setBugs] = useState([]);
     const fetchBugs = async () => {
       const response = await fetch('/api/bugs')
       const json = await response.json()
@@ -12,20 +12,22 @@ export default function AllBugsPage() {
         setBugs(json)
       }
     }
+
     useEffect(() => {
         
         fetchBugs()
       }, [])
 
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
-      function handleButtonClick(bug){
+    function handleButtonClick(bug){
         navigate(`/edit/${bug._id}`);
-      }
-async function handleDeleteButton(id){
-  await fetch (`/api/bugs/${id}`, {method:`delete`})
-  fetchBugs()
-}
+    }
+
+    async function handleDeleteButton(id){
+        await fetch (`/api/bugs/${id}`, {method:`delete`})
+        fetchBugs()
+    }
 
       return(
         <>

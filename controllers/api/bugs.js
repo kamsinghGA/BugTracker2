@@ -9,15 +9,18 @@ const getBugs = async (req, res) => {
   res.status(200).json(bugs)
 }
 
-//get single bug
-const getBug = async (req, res) => {
-  const { id } = req.params
-  const bug = await Bug.findById(id)
 
-  if (!bug) {
-    return res.status(404).json({error: 'No bug'})
-  }
-  res.status(200).json(bug)
+async function getBug(req, res) {
+    try {
+      const bug = await Bug.findById(req.params.id);
+      if (!bug) {
+        return res.status(404).json({ error: 'Bug not found' });
+      }
+      res.json(bug);
+    } catch (error) {
+      console.error('Error fetching bug details:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
 }
 
 //create bug
